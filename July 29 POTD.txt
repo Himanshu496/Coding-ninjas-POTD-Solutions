@@ -1,0 +1,53 @@
+POTD : 29 JULY 2023
+
+Easy : https://www.codingninjas.com/studio/problems/k-th-node-from-the-end-of-the-linked-list_1171164
+
+
+Solution:
+Java:
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static Node findKthFromLast(Node head, int K) {
+        // Write your code here
+        Node temp = head;
+        int count = 0;
+        while(temp!=null){
+            count++;
+            temp = temp.next;
+        }
+        if(K==count)return head;
+        K%=count;
+        while(count-K>0){
+            head = head.next;
+            K++;
+        }
+        return head;
+    }
+}
+
+
+Hard : https://www.codingninjas.com/studio/problems/beautiful-xor-pairs_1382115
+
+Solution : 
+Java
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    public static int countBeautifulPairs(ArrayList<Integer> arr, int low, int high) {
+        // Write your code here.
+        int count = 0;
+        int n = arr.size();
+        for(int i = 0; i<n; i++){
+            for(int j = i+1; j<n; j++){
+                int temp = arr.get(i)^arr.get(j);
+                if(temp>=low && temp<=high)count++;
+            }
+        }
+        return count;
+    }
+}
