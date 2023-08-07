@@ -1,0 +1,93 @@
+POTD : 4 AUGUST 2023
+
+EASY : https://www.codingninjas.com/studio/problems/sum-of-numbers_975486
+
+SOLUTION:  
+JAVA:
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    static int countOfDivisiblePairs(int n, int m) {
+        // Write your code here.
+        int count = 0;
+        for(int i = 1; i<=n; i++){
+            for(int j = 1; j<=m; j++){
+                if((i+j)%5==0)count++;
+            }
+        }
+        return count;
+    }
+}
+
+
+
+HARD : https://www.codingninjas.com/studio/problems/maximum-sum-bst-in-binary-tree_2099910
+
+SOLUTION: 
+JAVA:
+
+import java.util.* ;
+import java.io.*; 
+/********************************************** 
+
+Following is the BinaryTreeNode class structure
+
+class BinaryTreeNode<T> {
+    T data;
+    BinaryTreeNode<T> left;
+    BinaryTreeNode<T> right;
+
+    BinaryTreeNode(T data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+};
+
+*********************************************/
+
+public class Solution {
+    static int res = 0;
+    static int ans = 0;
+    static boolean check(BinaryTreeNode<Integer>root){
+        if(root==null)return true;
+        if(root.left != null && maxvalue(root.left)>root.data){
+            return false;
+        }
+        if(root.right!=null && minvalue(root.right)<root.data){
+            return false;
+        }
+        return check(root.left) && check(root.right);
+    }
+    static int maxvalue(BinaryTreeNode<Integer>root){
+        if(root == null)return Integer.MIN_VALUE;
+        return Math.max(root.data,Math.max(maxvalue(root.left),maxvalue(root.right)));
+    }
+    static int minvalue(BinaryTreeNode<Integer>root){
+        if(root==null)return Integer.MAX_VALUE;
+        return Math.min(root.data,Math.min(minvalue(root.left),minvalue(root.right)));
+    }
+    static void cal(BinaryTreeNode<Integer>root){
+        if(root==null)return;
+        ans+=root.data;
+        cal(root.left);
+        cal(root.right);
+    }
+    static void solve(BinaryTreeNode<Integer>root){
+        if(root == null)return;
+        if(check(root)){
+            ans = 0;
+            cal(root);
+            res = Math.max(res,ans);
+        }
+        solve(root.left);
+        solve(root.right);
+    }
+    static int maximumSumBST(BinaryTreeNode<Integer> root) {
+        // Write your code here.
+        res = 0;
+        solve(root);
+        return res;
+    }
+}
