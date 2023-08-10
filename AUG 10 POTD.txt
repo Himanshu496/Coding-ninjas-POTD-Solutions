@@ -1,0 +1,179 @@
+POTD: 10 AUGUST 2023
+
+EASY: https://www.codingninjas.com/studio/problems/string-reverse_3210207
+
+SOLUTION:
+JAVA:
+ 
+import java.util.* ;
+import java.io.*; 
+
+class Solution {
+
+  public static String stringReverse(char[] arr) {
+    // Write your code here.
+    String res ="";
+    int i = arr.length;
+    while(i>0){
+        res+=arr[--i];
+    }
+    return res;
+  }
+}
+
+CPP:
+
+#include <bits/stdc++.h> 
+
+string stringReverse(string S) {
+    // Write your code here.
+  string res = "";
+  int i = S.length();
+  while(i>0){
+      res+=S[--i];
+  }
+  return res;
+}
+
+
+HARD : https://www.codingninjas.com/studio/library/quicksort-on-a-doubly-linked-list
+SOLUTION :
+
+JAVA: 
+
+
+import java.util.* ;
+import java.io.*; 
+/*
+    Definition of Node class for reference  
+    class Node {
+        int value;
+        Node prev;
+        Node next;
+    
+        Node(int value) {
+            this.value = value;
+            prev = next = null;
+        }
+    }
+*/
+
+public class Solution {
+    public static Node partition(Node s, Node e) {
+        int pivot = s.value;
+
+        int rIndex = 0;
+        Node i = s.next;
+        while (i != e.next) {
+            if (pivot >= i.value) {
+                rIndex++;
+            }
+            i = i.next;
+        }
+
+        Node pivotNode = s;
+        Node temp = pivotNode;
+        while (rIndex > 0 && temp.next != null) {
+            temp = temp.next;
+            rIndex--;
+        }
+
+        int tempValue = pivotNode.value;
+        pivotNode.value = temp.value;
+        temp.value = tempValue;
+        pivotNode = temp;
+
+        Node currS = s;
+        Node currE = e;
+
+        while (currS != pivotNode && currE != pivotNode) {
+            while (currS.value <= pivot && currS.next != null) {
+                currS = currS.next;
+            }
+            while (currE.value > pivot && currE.prev != null) {
+                currE = currE.prev;
+            }
+            if (currS != pivotNode && currE != pivotNode) {
+                int tempVal = currS.value;
+                currS.value = currE.value;
+                currE.value = tempVal;
+
+                if (currS.next != pivotNode) {
+                    currS = currS.next;
+                }
+                if (currE.prev != pivotNode) {
+                    currE = currE.prev;
+                }
+            }
+        }
+
+        return pivotNode;
+    }
+
+    public static void quickSort2(Node s, Node e) {
+        if (s == null || e == null || s == e || s.prev == e) {
+            return;
+        }
+        Node p = partition(s, e);
+        if (p.prev != null) {
+            quickSort2(s, p.prev);
+        }
+        if (p.next != null) {
+            quickSort2(p.next, e);
+        }
+    }
+    public static Node quickSort(Node head) {
+        // Write your code here
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node s = head;
+        Node e = head;
+        while (e.next != null) {
+            e = e.next;
+        }
+        quickSort2(s, e);
+        return head;
+    }
+}
+
+
+
+2nd solution : 
+
+import java.util.* ;
+import java.io.*; 
+/*
+    Definition of Node class for reference  
+    class Node {
+        int value;
+        Node prev;
+        Node next;
+    
+        Node(int value) {
+            this.value = value;
+            prev = next = null;
+        }
+    }
+*/
+
+public class Solution {
+    public static Node quickSort(Node head) {
+        // Write your code here
+        ArrayList<Integer>al = new ArrayList<>();
+        Node temp = head;
+        while(temp!=null){
+            al.add(temp.value);
+            temp = temp.next;
+        }
+        Collections.sort(al);
+        temp = head;
+        int i = 0;
+        while(temp!=null){
+            temp.value = al.get(i++);
+            temp = temp.next;
+        }        
+        return head;
+    }
+}
+
