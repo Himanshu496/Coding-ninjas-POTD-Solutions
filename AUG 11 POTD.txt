@@ -1,0 +1,64 @@
+POTD:  11 AUGUST 2023
+
+EASY: https://www.codingninjas.com/studio/problems/find-the-lone-set-bit_1062725
+
+SOLUTION :
+
+JAVA: 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int findSetBit(int n) {
+		// WRITE YOUR CODE HERE
+		if(n==0)return -1;
+		if((n&(n-1)) == 0){
+			int i = 0;
+			while(n>0){
+				i++;
+				n/=2;
+			}
+			return i;
+		}
+		return -1;
+	}
+}
+
+HARD: https://www.codingninjas.com/studio/problems/ninja-and-number_1755909
+
+sOLUTION:
+
+JAVA:
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+	public static int gcd(int a, int b){
+		if(a>b){
+			if(b==0)return a;
+			else return gcd(b,a%b);
+		}else{
+			if(a==0)return b;
+			else return gcd(a,b%a);
+		}
+	}
+
+	public static int numbers(ArrayList<Integer> arr) {
+
+		// Write your code here
+		int mod = (int)1e9+7;
+		long sum = arr.get(0);
+		int n = arr.size();
+		int gcd = arr.get(0);
+		for(int i = 1; i<n; i++){
+			gcd = gcd(gcd,arr.get(i));
+			sum=(sum*arr.get(i))%mod;
+		}
+		while(gcd-->1){
+			sum = (sum*sum)%mod;
+		}
+		return (int)sum;
+	}
+}
