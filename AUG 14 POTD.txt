@@ -1,0 +1,60 @@
+POTD: 14 August 2023
+
+EASY : https://www.codingninjas.com/studio/problems/minimum-numbers-required_1459113
+
+SOLUTION:
+
+JAVA:
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution 
+{
+	public static int findMinNumbers(ArrayList<Integer> arr, int sum, int maxVal) 
+	{
+		// Write your code here.
+		int total = 0;
+		int n = arr.size();
+		for(int i = 0; i<n; i++) total+=arr.get(i);
+		int required = Math.abs(sum-total);
+		int res = 0;
+		if(required==0)return 0;
+		while(required>maxVal){
+			required-=maxVal;
+			res++;
+		}
+		return res+1;
+	}
+}
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/divide-string_1262345
+
+SOLUTION:
+ 
+JAVA:
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    public static ArrayList<String> divideString(String word, int n) {
+        // Write your code here
+        int size = word.length();
+        ArrayList<String> res = new ArrayList<>();
+        int add = size/n;
+        if(size%n==0){
+            int i = 0;
+            while(i<size){
+                res.add(word.substring(i,i+add));
+                i+=add;
+            }
+        }else{
+            return res;
+        }
+        return res;
+    }
+}
