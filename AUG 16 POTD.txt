@@ -33,3 +33,58 @@ public class Solution {
 		return res;
 	}
 }
+
+
+MEDUIM : 
+
+SOLUTION : 
+JAVA:
+
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+	public static ArrayList<Double> sampleStats(ArrayList<Integer> count) 
+    {
+		// Write your code here.
+		ArrayList<Integer> array = new ArrayList<>();
+        int total_sum = 0;
+        int count_last = 0;
+        int no = -1;
+        for(int i = 0; i<256; i++){
+            if(count.get(i)!=0){
+                int temp = count.get(i);
+                int count_in = 0;
+                while(temp-->0){
+                    count_in++;
+                    total_sum+=(i);
+                    array.add(i);
+                }
+                if(count_in>count_last){
+                    no = i;
+                    count_last = count_in;
+                }
+            }
+        }
+        ArrayList<Double>res = new ArrayList<>();
+        int size = array.size();
+        Double low = array.get(0)*1.0;
+        res.add(low);
+        Double max = array.get(size-1)*1.0;
+        res.add(max);
+        Double mean = total_sum*1.0/size;
+        res.add(mean);
+        if(size%2!=0){
+            Double median = array.get(size/2)*1.0;
+            res.add(median);
+        }else{
+            Double median = (array.get(size/2)*1.0+array.get((size/2)-1)*1.0)/2;
+            res.add(median);
+        }
+        double mode = no*1.0;
+        res.add(mode);
+        return res;
+	}
+}
+
+NOTE : OF MEDIUM GETTING TLE
