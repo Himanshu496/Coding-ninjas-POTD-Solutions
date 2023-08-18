@@ -1,0 +1,21 @@
+POTD: 17 AUGUST 2023
+
+MEDIUM : https://www.codingninjas.com/studio/problems/optimize-the-code_2425461
+
+SOLUTION : LAST TEST CASE FAILED TLE
+
+JAVA:
+
+public class Solution {
+    public static long optimizeCode(int a, int b, int c, int d)
+    {
+         // Write your code here.
+         long res = 0;
+         for(int i = a; i<=b; i++){
+             for(int j = c; j<=d; j++){
+                 res+=(i^j);
+             }
+         }
+         return res;
+    }
+}
