@@ -1,0 +1,55 @@
+POTD: 18 August 2023
+18/08/2023
+
+EASY : https://www.codingninjas.com/studio/problems/no-adjacent-same_973005
+
+SOLUTION : 
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static boolean checkBits(int n) {
+        // Write your code here.
+        int prev = -1;
+        while(n>0){
+            int temp = n%2;
+            if(prev==temp)return false;
+            prev = temp; 
+            n/=2;
+        }
+        return true;
+    }
+}
+
+
+
+HARD : https://www.codingninjas.com/studio/problems/chocolate-and-sweetness_2542078
+
+SOLUTION : 
+
+JAVA : 
+
+public class Solution {
+	public static int[] chocolatesAndSweetness(int n, int q, int[] expiry, int[] sweetness, int[][] query) {
+		// Write your code here
+		int res[] = new int[q];
+		int i = 0;
+		while(i<q){
+			int sweet = query[i][0];
+			int exp = query[i][1];
+			int count = 0;
+			for(int j = 0; j<n; j++){
+				if(sweetness[j]>=sweet)
+					if(expiry[j]>exp)
+						count++;
+			}
+			res[i] = count;
+			i++;
+		}
+		return res;
+	}
+}
+
+
