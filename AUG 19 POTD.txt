@@ -1,0 +1,77 @@
+POTD : 19 August 2023
+
+EASY : https://www.codingninjas.com/studio/problems/minimum-difference-of-array_5026699
+
+SOLUTION : 
+https://www.codingninjas.com/studio/problem-details/minimum-difference-of-array_5026699#:~:text=Given%20an%20array%20of%20integers,other%20pair%20has%20less%20difference.
+JAVA: 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static ArrayList<Integer> getFrequency(String str, ArrayList<String> words, int n) {
+		// Write your code here.
+		ArrayList<Integer> res = new ArrayList<>();
+		Map<String, Integer>mp = new HashMap<>();
+		String[] st = str.split(" ");
+		for(String string : st){
+			mp.put(string, mp.getOrDefault(string, 0)+1);
+		}
+		for(int i = 0; i<n; i++){
+			res.add(mp.getOrDefault(words.get(i), 0));
+		}
+		return res;
+	}
+}
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/ninja-and-the-game-of-words_1214642
+
+SOLUTION : 
+
+JAVA :
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static ArrayList<Integer> getFrequency(String str, ArrayList<String> words, int n) {
+		// Write your code here.
+		ArrayList<Integer> res = new ArrayList<>();
+		Map<String, Integer>mp = new HashMap<>();
+		String[] st = str.split(" ");
+		for(String string : st){
+			mp.put(string, mp.getOrDefault(string, 0)+1);
+		}
+		for(int i = 0; i<n; i++){
+			res.add(mp.getOrDefault(words.get(i), 0));
+		}
+		return res;
+	}
+}
+
+
+HARD : https://www.codingninjas.com/studio/problems/reverse-pairs_1112652
+
+SOLUTION : 
+
+JAVA: 
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static int reversePairs(ArrayList<Integer> arr) 
+    {
+        // Write your code here.
+        int count = 0;
+        int n = arr.size();
+        for(int i = 0; i<n; i++){
+            for(int j = i+1; j<n; j++){
+                if(arr.get(i)>2*arr.get(j))count++;
+            }
+        }
+        return count;
+    }
+}
