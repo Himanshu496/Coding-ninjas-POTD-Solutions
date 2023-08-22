@@ -1,0 +1,49 @@
+POTD : 22 AUGUST 2023
+
+EASY : https://www.codingninjas.com/studio/problems/boring-factorials_1474978
+
+SOLUTION : 
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+    public static int solve(int n, int p, int cal){
+        if(cal==0)return 0;
+        if(n==0)return cal;
+        cal = (cal *(n%p))%p;
+        return solve(n-1,p,cal);
+    }
+    public static int boringFactorials(int n, int p)
+    {
+        // Write your code here.
+        return solve(n,p,1);
+    }
+}
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/smallest-number-divisible-by-k_1467106
+
+SOLUTION : 
+(NOT MINE)
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int lengthOfNumber(int k) {
+		// Write your code here.
+		int res = 0;
+		int div = 1;
+		int len = 1;
+		for(int i = 0; i<=k; i++){
+			if(div%k==0)return len;
+			div = (div*10+1)%k;
+			len++;
+		}
+		return -1;
+	}
+}
