@@ -1,0 +1,104 @@
+POTD : 23 AUGUST 2023
+
+EASY : https://www.codingninjas.com/studio/problems/minimum-and-maximum-of-two-integers-without-branching_1199197
+
+SOLUTION : 
+
+JAVA:
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+	public static ArrayList<Integer> findMinMax(int a, int b) {
+		// Write your code here
+		ArrayList<Integer> res = new ArrayList<>();
+		res.add(Math.min(a,b));
+		res.add(Math.max(a,b));
+		return res;
+	}
+}
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/fibonacci-sum_1496999
+
+SOLUTION : 
+
+JAVA: 
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+
+	public static int fiboSum(int n , int m) {
+		// Write your code here.
+		long arr[] = new long[m+1];
+		arr[0] = 0*1l;
+		arr[1] = 1*1l;
+		int mod = (int)1e9+7;
+		long res = 0;
+		for(int i = 2; i<=m; i++){
+			arr[i] = (arr[i-1]+arr[i-2])%mod;
+			if(i>=n){
+				res = (res+arr[i])%mod;
+			}
+		}
+		return (int)res;
+	}
+
+}
+
+
+CPP : 
+
+#include <bits/stdc++.h> 
+
+int fiboSum(int n, int m) {
+    vector<long long> arr(m + 1);
+    arr[0] = 0LL;
+    arr[1] = 1LL;
+    int mod = static_cast<int>(1e9) + 7;
+    long long res = 0LL;
+    if(n==0 && m>2){
+		res+=arr[0];
+		res+=arr[1];
+	}
+    for (int i = 2; i <= m; i++) {
+        arr[i] = (arr[i - 1] + arr[i - 2]) % mod;
+        if (i >= n) {
+            res = (res + arr[i]) % mod;
+        }
+    }
+    
+    return static_cast<int>(res);
+}
+
+HARD : https://www.codingninjas.com/studio/problems/generate-all-parenthesis_920445
+
+SOLUTION :
+
+JAVA : 
+
+public class Solution {
+	public static void solve(int n, int idx, int open, int close,String str){
+		if(close>open)return;
+		if(idx>2*n)return;
+		if(idx == 2*n){
+			if(open == close){
+				System.out.println(str);
+				return;
+			}
+		}
+		solve(n, idx+1, open+1, close, (str+'('));
+		solve(n, idx+1, open , close+1, (str+')'));
+	}
+	public static void printWellFormedParanthesis( int n){
+		
+		// Write your code here
+		solve(n,0,0,0,"");
+	}
+}
+	
+
+
