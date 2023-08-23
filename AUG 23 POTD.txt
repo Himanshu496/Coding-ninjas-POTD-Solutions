@@ -101,4 +101,4 @@ public class Solution {
 }
 	
 
-
+Note:  ALL question done in 20 mins.
