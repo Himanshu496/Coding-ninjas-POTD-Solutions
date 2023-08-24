@@ -1,0 +1,38 @@
+POTD : 24 AUGUST 2023
+
+EASY : https://www.codingninjas.com/studio/problems/infix-to-postfix_1382146
+
+SOlUTION: 
+
+JAVA: 
+
+
+MEDIUM: minimum difference of subarray coding ninja
+
+SOLUTION: https://www.codingninjas.com/studio/problem-details/minimum-difference-of-subarrays_2181057
+
+JAVA: 
+
+
+public class Solution {
+	public static int minimumDifference(int n, int[] arr) {
+		// Write your code here
+		int res = Integer.MAX_VALUE;
+		long cal = 0;
+		long temp = 0;
+		for(int i = 0; i<n; i++)cal+=arr[i];
+		for(int i = 0; i<n; i++){
+			temp += arr[i];
+			res = Math.min(res,(int)Math.abs(cal-2*temp));
+		}
+		return res;
+	}
+}
+
+HARD : Minimum cost to hire m employees
+https://www.codingninjas.com/studio/problems/minimum-cost-to-hire-m-candidates_1387106
+
+SOLUTION : 
+
+JAVA: 
+
