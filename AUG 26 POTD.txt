@@ -1,0 +1,19 @@
+POTD : 26 AUGUST 2023
+
+EASY : https://www.codingninjas.com/studio/problems/ninja-and-the-triangle_1229510
+
+SOLUTION : 
+ import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int ninjaAndTriangle(int n) {
+        // Write your code here.
+        if(n<=2)return 1;
+        long res = 0;
+        for(long i = 1; i<=n/2; i++){
+            if((i*(i+1))/2 <=(long)n)res=i;
+        }
+        return (int)res;
+    }
+}
+//but not all test cases passing*
