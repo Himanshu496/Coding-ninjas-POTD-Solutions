@@ -1,0 +1,113 @@
+POTD : 27 AUGUST 2023
+
+EASY : https://www.codingninjas.com/studio/problems/amazing-strings_893182
+
+SOLUTION : 
+JAVA:
+
+import java.util.*;
+
+public class Solution {
+	public static String amazingStrings(String first, String second,String third) {
+		// Write your code here.
+		String concat = first+second;
+		Map<Character,Integer>mp = new HashMap<>();
+		if(third.length()!=concat.length())return "NO";
+		int n = third.length();
+		for(int i = 0; i<n; i++){
+			mp.put(third.charAt(i),mp.getOrDefault(third.charAt(i), 0)+1);
+		}
+		for(int i = 0; i<n; i++){
+			if(!mp.containsKey(concat.charAt(i)))return "NO";
+			int freq = mp.getOrDefault(concat.charAt(i), 0);
+			if(freq == 0)return "NO";
+			mp.put(concat.charAt(i),freq-1);
+		}
+		return "YES";
+	}
+}
+
+
+MEDIUM : 
+
+SOLUTION : https://www.codingninjas.com/studio/library/asteroid-collision
+
+JAVA: 
+// import java.util.*;
+// public class Solution {
+//     public static List< Integer > collidingAsteroids(int []asteroids) {
+//         //    Write your code here.
+//         Stack<Integer> st = new Stack<>();
+//         int n = asteroids.length;
+//         int i = 0;
+//         while(true){
+//             if(i==0){
+//                 st.add(asteroids[i++]);
+//                 continue;
+//             }
+//             st.add(asteroids[i]);
+//             while((!st.empty()) ||(st.peek()>0 && asteroids[i]<0)
+//              ||(st.peek()<0 && asteroids[i]>0) || (Math.abs(st.peek())<Math.abs(asteroids[i]))){
+//                 st.remove(st.peek());
+//                 if(i==n-1)break;
+//             }
+//             i++;
+//             if(st.empty() || i==n-1)break;
+//         }
+//         List<Integer>res = new ArrayList<>();
+//         while(!st.empty()){
+//             int val = st.peek();
+//             res.add(val);
+//             st.remove(st.peek());
+//         }
+//         Collections.reverse(res);
+//         return res;
+//     }
+// }
+import java.util.*;
+
+public class Solution {
+    public static List<Integer> collidingAsteroids(int[] asteroids) {
+        Stack<Integer> st = new Stack<>();
+        int n = asteroids.length;
+        for (int i = 0; i < n; i++) {
+            if (st.isEmpty() || asteroids[i] > 0) {
+                st.push(asteroids[i]);
+            } else {
+                while (!st.isEmpty() && st.peek() > 0 
+                && st.peek() < Math.abs(asteroids[i])) {
+                    st.pop();
+                }
+                if (st.isEmpty() || st.peek() < 0) {
+                    st.push(asteroids[i]);
+                } else if (st.peek() < -asteroids[i]) {
+                    st.pop();
+                }
+            }
+        }
+        return new ArrayList<>(st);
+    }
+}
+
+
+HARD : https://www.codingninjas.com/studio/problems/ninja-is-running-out-of-time_1758496
+
+SOLUTION : 
+JAVA : 
+
+
+public class Solution {
+	public static int[] fenwikTree(int[] arr, int n) {
+		// Write your code here
+		int res[] = new int[n];
+		for(int i = 0; i<n; i++){
+			int checkno = arr[i];
+			int sum = 0;
+			for(int j = 0; j<i; j++){
+				if(checkno<arr[j])sum+=arr[j];
+			}
+			res[i] = sum;
+		}
+	    return res;
+	}
+}
