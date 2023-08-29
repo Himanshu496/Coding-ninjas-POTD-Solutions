@@ -1,0 +1,36 @@
+POTD : 29 AUGUST 2023
+
+EASY : https://www.codingninjas.com/studio/problems/ninja-and-editor_1171183
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/ninja-and-editor_1171183
+
+JAVA :
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static String editSentence(String str){
+        // Write your code here.
+        int n = str.length();
+        String res = "";
+        String temp = "";
+        for(int i = 0; i<n; i++){
+            if(i==0){
+                temp += Character.toLowerCase(str.charAt(i));
+                continue;
+            }
+            if(str.charAt(i)<='Z' && str.charAt(i)>='A'){
+                res = res+temp+" ";
+                temp = "";
+                temp += Character.toLowerCase(str.charAt(i));
+                continue;
+            }
+            temp += (str.charAt(i));
+        }
+        res+=temp;
+        return res;
+    }
+}
+
+
+NOTE : TLE*
