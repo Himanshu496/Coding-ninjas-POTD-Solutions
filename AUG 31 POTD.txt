@@ -1,0 +1,39 @@
+POTD : 31 AUGUST 2023
+
+EASY : https://www.codingninjas.com/studio/problems/subarray-with-distinct-integers_893062
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/subarray-with-distinct-integers_893062
+
+JAVA: 
+
+//GETTING TLE
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static boolean check(ArrayList<Integer>al, int b){
+        Set<Integer>st = new HashSet<>();
+        for(int i = 0; i<al.size(); i++)st.add(al.get(i));
+        // System.out.println(st.size());
+        return st.size()==b;
+    }
+    public static void print(ArrayList<Integer>al){
+        for(int val : al){
+            System.out.print(val+" ");
+        }
+        System.out.println();
+    }
+    public static int goodSubarrays(int arr[], int n,int b) {
+        // Write your code here.
+        int res = 0;
+        for (int i=0; i <n; i++){
+            for (int j=i; j<n; j++){
+                ArrayList<Integer>al = new ArrayList<>();
+                for (int k=i; k<=j; k++)
+                    al.add(arr[k]);
+                // print(al);
+                if(check(al,b))res++;
+            }
+        }
+        return res;
+    }
+}
