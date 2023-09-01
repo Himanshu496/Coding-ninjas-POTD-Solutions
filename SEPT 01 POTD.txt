@@ -1,0 +1,157 @@
+POTD : 1 SEPTEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/set-matrix-ones_981213
+
+SOLUTION : 
+
+JAVA :
+//Not working for all test case Getting TLE
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+    public static void set(ArrayList<ArrayList<Integer>>arr, int row, int col,int n, int m){
+        // for(int i = 0; i<n; i++){
+        //     for(int j = 0; j<m; j++){
+        //         if(row==i || col==j)
+        //             arr.get(i).set(j,1);
+        //         if(row==i || col==j)
+        //             System.out.println(i+" "+j+ " "+row+" "+col);
+        //     }
+        // }
+        for (int i = 0; i < n; i++) {
+            arr.get(i).set(col, 1);
+        }
+        for (int j = 0; j < m; j++) {
+            arr.get(row).set(j, 1);
+        }
+    }
+    public static void setMatrixOnes(ArrayList<ArrayList<Integer>> MAT, int n, int m)
+    {
+        // Write your code here.
+        ArrayList<ArrayList<Integer>>arr = new ArrayList<>();
+        for(ArrayList<Integer>temp : MAT){
+            arr.add(new ArrayList<>(temp));
+        }
+        for(int i = 0; i<n; i++){
+            for(int j = 0; j<m; j++){
+                if(arr.get(i).get(j)==1){
+                    set(MAT,i,j,n,m);
+                }
+            }
+        }
+    }
+}
+
+
+
+//Another but still getting tle
+
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+    public static void setMatrixOnes(ArrayList<ArrayList<Integer>> MAT, int n, int m)
+    {
+        // Write your code here.
+        ArrayList<Integer> rowsToSet = new ArrayList<>();
+        ArrayList<Integer> colsToSet = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (MAT.get(i).get(j) == 1) {
+                    rowsToSet.add(i);
+                    colsToSet.add(j);
+                }
+            }
+        }
+        for (int row : rowsToSet) {
+            for (int j = 0; j < m; j++) {
+                MAT.get(row).set(j, 1);
+            }
+        }
+        for (int col : colsToSet) {
+            for (int i = 0; i < n; i++) {
+                MAT.get(i).set(col, 1);
+            }
+        }
+    }
+}
+
+
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/maximum-subarray-sum-after-k-concatenation_874513
+
+SOLUTION : 
+
+JAVA :
+
+//Getting wrong answer in one test case because making mistake in datatype
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static long maxSubSumKConcat(ArrayList<Integer> arr, int n, int k) {
+		// Write your code here.
+		ArrayList<Integer>temp = new ArrayList<>();
+		while(k-->0){
+			temp.addAll(arr);
+		}
+		int maxSum = Integer.MIN_VALUE;
+		int currSum = 0;
+		for(int i = 0; i<temp.size(); i++){
+			currSum+=temp.get(i);
+			if(currSum>maxSum)maxSum = currSum;
+			if(currSum<0)currSum = 0;
+		}
+		return maxSum;
+	}
+}
+
+
+
+ANOTHER SOLUITON :
+
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+
+	public static long maxSubSumKConcat(ArrayList<Integer> arr, int n, int k) {
+		// Write your code here.
+		long maxSum = Integer.MIN_VALUE;
+		long currSum = 0;
+		for(int i = 0; i<n*k; i++){
+			currSum+=arr.get(i%n);
+			if(currSum>maxSum)maxSum = currSum;
+			if(currSum<0)currSum = 0;
+		}
+		return maxSum;
+	}
+}
+
+
+HARD : https://www.codingninjas.com/studio/problems/maximum-xor_973113
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/maximum-xor_973113
+
+JAVA :
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+
+	public static int maxXOR(int n, int m, ArrayList<Integer> arr1, ArrayList<Integer> arr2) 
+	{
+	    // Write your code here.   
+		int res = 0;
+		for(int i = 0; i<n; i++){
+			for(int j = 0; j<m; j++){
+				res = Math.max(res,arr1.get(i)^arr2.get(j));
+			}
+		}
+		return res;
+	}
+}
