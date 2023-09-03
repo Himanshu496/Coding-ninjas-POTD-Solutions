@@ -1,0 +1,36 @@
+POTD : 03 SEPTEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/count-distinct-element-in-every-k-size-window_920336
+//modified medium  :: https://www.codingninjas.com/studio/problems/count-distinct-elements-in-every-window_980530
+
+SOLUTION : 
+
+JAVA : 
+
+//sliding window
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static ArrayList<Integer> countDistinctElements(ArrayList<Integer> arr, int k) {
+
+		// Write your code here
+		Map<Integer,Integer>mp = new HashMap<>();
+		for(int i = 0; i<k; i++){
+			mp.put(arr.get(i),mp.getOrDefault(arr.get(i),0)+1);
+		}
+		ArrayList<Integer>res = new ArrayList<>();
+		res.add(mp.size());
+		int n = arr.size();
+		for(int i = k; i<n; i++){
+			mp.put(arr.get(i),mp.getOrDefault(arr.get(i),0)+1);
+			mp.put(arr.get(i-k),mp.get(arr.get(i-k))-1);
+			if(mp.get(arr.get(i-k))==0)mp.remove(arr.get(i-k));
+			res.add(mp.size());
+		}
+		return res;
+	}
+}
