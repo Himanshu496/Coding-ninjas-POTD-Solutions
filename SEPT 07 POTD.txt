@@ -1,0 +1,38 @@
+POTD : 7 SEPTEMBER 2023
+
+
+EASY : https://www.codingninjas.com/studio/problems/vaccination-drive_1496512
+
+SOLUTION : 
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+
+	public static int getMaximumHouses(int k, int l) {
+		// Write your code here.
+		return (int)(Math.pow(2,l))-k;
+	}
+}
+
+
+MEDIUM : https://codingninjas.com/studio/problems/factorial_975273
+
+SOLUTION : 
+
+JAVA : 
+import java.math.BigInteger;
+
+public class Solution {
+	public static void factorial(int n) {
+		// Write your code here
+		BigInteger res = BigInteger.ONE;
+		for(int i = 2; i<=n; i++){
+			res = res.multiply(BigInteger.valueOf(i));
+		}
+		System.out.println(res);
+	}
+}
