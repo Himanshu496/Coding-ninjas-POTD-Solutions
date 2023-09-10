@@ -1,0 +1,100 @@
+POTD : 10 September 2023
+
+EASY : https://www.codingninjas.com/studio/problems/add-one-to-number_873367
+
+SOLUTION : 
+NOte : A BIT CHANGE IN SECOND CODE
+
+1 :
+
+
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+public static ArrayList<Integer> addOneToNumber(ArrayList<Integer> arr)
+    {
+        // Write your code here.
+        ArrayList<Integer>res = new ArrayList<>();
+        int n = arr.size();
+        int carry = 0;
+        int val = arr.get(n-1)+1;
+        res.add(val%10);
+        carry = val/10;
+        for(int i = n-2; i>=0; i--){
+            val = arr.get(i)+carry;
+            res.add(val%10);
+            carry = val/10;
+        }
+        if(carry == 1)res.add(1);
+        while (!res.isEmpty() && res.get(res.size() - 1) == 0) {
+            res.remove(res.size() - 1);
+        }
+        Collections.reverse(res);
+        return res;
+    }
+}
+
+
+2 :
+
+
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+public static ArrayList<Integer> addOneToNumber(ArrayList<Integer> arr)
+    {
+        // Write your code here.
+        ArrayList<Integer>res = new ArrayList<>();
+        int n = arr.size();
+        int carry = 0;
+        int val = arr.get(n-1)+1;
+        res.add(val%10);
+        carry = val/10;
+        for(int i = n-2; i>=0; i--){
+            val = arr.get(i)+carry;
+            res.add(val%10);
+            carry = val/10;
+        }
+        if(carry == 1)res.add(1);
+        Collections.reverse(res);
+        for(int i = 0; i<res.size(); i++){
+            if(res.get(i)!=0)return res;
+            else res.remove(i--);
+        }
+        return res;
+    }
+}
+
+
+
+HARD : https://codingninjas.com/studio/problems/k-th-element-of-2-sorted-array_1164159
+
+SOLUTION : 
+
+public class Solution {
+    public static int ninjaAndLadoos(int row1[], int row2[], int m, int n, int k) {
+        // Write your code here.
+        int i = 0;
+        int j = 0;
+        while(i<m || j<n){
+            if(k==1){
+                return Math.min((i==m?Integer.MAX_VALUE:row1[i]),(j==n?Integer.MAX_VALUE:row2[j]));
+            }
+            if(i==m){
+                k--;
+                j++;
+                continue;
+            }else if(j==n){
+                k--;
+                i++;
+                continue;
+            }
+            if(row1[i]<row2[j])i++;
+            else j++;
+            k--;
+        }
+        return -1;
+    }
+}
