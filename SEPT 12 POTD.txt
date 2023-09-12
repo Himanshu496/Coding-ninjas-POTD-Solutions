@@ -1,0 +1,75 @@
+POTD : 12 SEPTEMBER 2023
+
+EASY : 
+
+SOLUTION : 
+
+
+
+MODERATE : 
+
+SOLUTION :  https://www.codingninjas.com/studio/library/kth-smallest-element-in-bst
+
+
+/*********************************************************
+
+ Following is the TreeNode structure:
+
+ class TreeNode {
+     int data;
+     TreeNode left;
+     TreeNode right;
+     TreeNode() {
+         this.data = 0;
+         this.left = null;
+         this.right = null;
+     }
+     TreeNode(int data) {
+         this.data = data;
+         this.left = null;
+         this.right = null;
+     }
+     TreeNode(int data, TreeNode left, TreeNode right) {
+         this.data = data;
+         this.left = left;
+         this.right = right;
+     }
+ };
+ ********************************************************/
+import java.util.*;
+public class Solution {
+    public static void solve(TreeNode root, List<Integer>al){
+        if(root == null)return;
+        solve(root.left,al);
+        al.add(root.data);
+        solve(root.right,al);
+    }
+    public static int kthSmallest(TreeNode root, int k) {
+        // Write your code here.
+        List<Integer>al = new ArrayList<>();
+        solve(root,al);
+        return al.get(k-1);
+    }
+}
+
+
+
+HARD : https://www.codingninjas.com/studio/problems/alien-dictionary_630423
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/alien-dictionary_630423
+
+//Note : not sure work or not
+public class Solution {
+    public static String getAlienLanguage(String []dictionary, int k) {
+        // Write your code here.
+        for(String str : dictionary){
+            int n = str.length();
+            for(int i = 0; i<n; i++){
+                if(str.charAt(i)-'a'>k){
+                    return "false";
+                }
+            }
+        }
+        return "true";
+    }
+}
