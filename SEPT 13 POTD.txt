@@ -1,0 +1,15 @@
+POTD : 
+
+EASY : https://www.codingninjas.com/studio/problems/set-matrix-zeros_3846774
+
+SOLUTION : 
+
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/delete-node-in-bst_920381s
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/remove-node-in-bst_920452
+
+
+
+HARD : https://www.codingninjas.com/studio/problems/minimum-cost-to-connect-two-groups-of-points_1459123
