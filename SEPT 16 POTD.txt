@@ -1,0 +1,64 @@
+POTD : 16 SEPTEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/reverse-words-in-a-string_696444
+
+SOLUTION : 
+
+//works perfectly
+
+import java.util.*;
+public class Solution 
+{
+	public static String reverseString(String str) 
+	{
+		//Write your code here
+		String[] arr = str.split(" ");
+        	StringBuilder res = new StringBuilder();
+        	for (int i = arr.length - 1; i >= 0; i--) {
+            		res.append(arr[i]).append(" ");
+       		}
+        	return res.toString().trim();
+	}
+}
+
+//NOt working for last test case out of 30
+import java.util.*;
+public class Solution 
+{
+	public static String reverseString(String str) 
+	{
+		//Write your code here
+		String[] arr = str.split( " ");
+		// Arrays.reverse(arr);
+		String res = "";
+		// for(String st : arr)res+=st+" ";
+		for(int i = arr.length-1; i>=0; i--)res+=arr[i]+" ";
+		return res;
+	}
+}
+
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/faulty-key_1229067
+
+SOLUTION : 
+
+
+//NOt by Me 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public  static int getSum(int a, int b){
+        // Write your code here.
+        int c=1,sum=0;
+        while(c!=0)
+        {
+            sum = a^b;
+            c = (a&b)<<1;
+            a = sum;
+            b = c;
+        }
+        return sum;
+    }
+}
