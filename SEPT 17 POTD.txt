@@ -1,0 +1,77 @@
+POTD : 17 SEPTEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/odd-and-even-positioned-linked-list-nodes_1229404
+
+SOLUTION : 
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+	class Node {
+	    public int value;
+	    public Node next;
+
+	    Node(int value) {
+	        this.value = value;
+	        this.next = null;
+	    }
+	}
+
+*****************************************************************/
+
+public class Solution {
+	public static Node oddEvenLinkedList(Node head) {
+		// Write your code here.
+		Node even_h = new Node(-1);;
+		Node odd_h = new Node(-1);
+		Node temp1 = even_h;
+		Node temp2 = odd_h;
+		int count = 1;
+		while(head!=null){
+			if(count%2==0){
+				Node temp = new Node(head.value);
+				temp1.next = temp;
+				temp1 = temp1.next;
+			}else{
+				Node temp = new Node(head.value);
+				temp2.next = temp;
+				temp2 = temp2.next;
+			}
+			count++;
+			head = head.next;
+		}
+		temp2.next = even_h.next;
+		return odd_h.next;
+	}
+}
+
+HARD : https://www.codingninjas.com/studio/problems/construct-bsts_920468
+
+SOLTUION : https://www.codingninjas.com/studio/problem-details/construct-bsts_920468
+
+JAVA :
+
+public class Solution {
+
+    public static long totalTrees(int num) {
+
+    	// Write your code here.
+        if(num == 0 || num == 1)return 1;
+        int mod = (int)1e9+7;
+        long res[] = new long[num+1];
+        res[0] = 1;
+        res[1] = 1;
+        for(int i = 2; i<=num; i++){
+            for(int j = 0; j<i; j++){
+                res[i]+=res[j]*res[i-j-1];
+                res[i]%=mod;
+            }
+        }
+        return res[num];
+    }
+}
