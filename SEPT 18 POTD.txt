@@ -1,0 +1,56 @@
+POTD : 18 SEPTEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/armstrong-number_1462443
+
+SOLUTION : 
+
+JAVA : 
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+	public static int count(int n){
+		int res = 0;
+		while(n>0){
+			res++;
+			n/=10;
+		}
+		return res;
+	}
+	public static boolean isArmstrong(int num)
+	{
+	    // wrtie your code here;
+		int pow = count(num);
+		long sum = 0;
+		int n = num;
+		while(n!=0){
+			sum+=Math.pow(n%10,pow);
+			n/=10;
+		}
+		return sum==num;
+	}
+}
+
+
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/longest-prefix-which-is-suffix_3146849
+
+SOLUTION : 
+
+JAVA : 
+
+
+public class Solution {
+    public static String longestPrefixSuffix(String str){
+        // Write your code here.
+        int n = str.length();
+        String res = "";
+        for(int i = 1; i<n-1; i++){
+            String pre = str.substring(0,i);
+            String suff = str.substring(n-i);
+            if(pre.equals(suff))res = pre;
+        }
+        return res;
+    }
+}
