@@ -1,0 +1,56 @@
+POTD : 20 SEPTEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/odd-even-level_794960
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/odd-even-level_794960#:~:text=Create%20a%20queue%20of%20Binary,sum%20of%20even%20level%20nodes.
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+/*******************************************************
+Following is the BinaryTreeNode class structure
+
+class BinaryTreeNode<T> {
+    T data;
+    BinaryTreeNode<T> left;
+    BinaryTreeNode<T> right;
+    
+    public BinaryTreeNode(T data) {
+        this.data = data;
+    }
+}
+*******************************************************/
+
+public class Solution {
+    public static ArrayList<Long> solve(BinaryTreeNode<Integer>root){
+        ArrayList<Long>res = new ArrayList<>();
+        Queue<BinaryTreeNode<Integer>>q = new LinkedList<>();
+        if(root==null)return res;
+        q.add(root);
+        while(!q.isEmpty()){
+            long sum = 0;
+            int size = q.size();
+            for(int i = 0; i<size; i++){
+                BinaryTreeNode<Integer>bt = q.poll();
+                sum+=bt.data;
+                if(bt.left!=null)q.add(bt.left);
+                if(bt.right!=null)q.add(bt.right);
+            }
+            res.add(sum);
+        }
+        return res;
+    }
+    public static void evenOddLevelDifference(BinaryTreeNode<Integer> root) {
+        // Write you code here
+        ArrayList<Long>res = solve(root);
+        long ans = 0;
+        int n = res.size();
+        for(int i = 0; i<n; i++){
+            if(i%2==0)ans+=res.get(i);
+            else ans-=res.get(i);
+        }
+        System.out.println(Math.abs(ans));
+    }
+
+}
