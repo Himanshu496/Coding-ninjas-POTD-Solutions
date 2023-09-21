@@ -1,0 +1,145 @@
+POTD : 21 SEPTEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/duplicate-in-array_893397
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/find-duplicate-in-array_1112602
+
+JAVA :
+
+import java.util.ArrayList;
+import java.util.*;
+
+public class Solution {
+
+	public static int findDuplicate(ArrayList<Integer> arr) {
+
+		//    Write your code here.
+		Set<Integer>st = new HashSet<>();
+		for(int val : arr){
+			if(st.contains(val))return val;
+			else st.add(val);
+		}
+		return -1;
+	}
+}
+
+//Optimized code using slow and fast pointer
+
+import java.util.ArrayList;
+import java.util.*;
+
+public class Solution {
+
+	public static int findDuplicate(ArrayList<Integer> arr) {
+
+		//    Write your code here.
+		int slow = arr.get(0);
+		int fast = arr.get(0);
+		do{
+			slow = arr.get(slow);
+			fast = arr.get(arr.get(fast));
+		}while(slow!=fast);
+		fast = arr.get(0);
+		while(slow!=fast){
+			slow = arr.get(slow);
+			fast = arr.get(fast);
+		}
+		return slow;
+	}
+}
+
+MEDIUM : https://www.codingninjas.com/studio/problems/merge-point-of-two-linked-lists_1869000
+
+SOLUTION : https://www.codingninjas.com/studio/library/the-intersection-point-of-two-linked-lists
+
+JAVA : 
+
+//Self
+
+/*
+    Time Complexity :- O(N)
+    Space Complexity :- O(1)
+    
+    Where N is the maximum length of linked list.
+*/
+
+public class Solution {
+
+	private static int length(LinkedListNode<Integer> head) {
+	    int length = 0;
+	    while (head != null) {
+	        head = head.next;
+	        length++;
+	    }
+	    return length;
+	}
+
+	public static int findIntersection(LinkedListNode<Integer> firstHead, LinkedListNode<Integer> secondHead) {
+		int firstlength = length(firstHead);
+		int secondlength = length(secondHead);
+		if(firstlength>secondlength){
+			while(firstlength--!=secondlength){
+				firstHead = firstHead.next;
+			}
+		}else{
+			while(firstlength!=secondlength--){
+				secondHead = secondHead.next;
+			}
+		}
+		while((firstHead!=null && secondHead!=null) && firstHead!=secondHead){
+			firstHead = firstHead.next;
+			secondHead = secondHead.next;
+		}
+		return firstHead==null?-1:firstHead.data;
+	}
+}
+
+
+//Automated by Computer
+
+/*
+    Time Complexity :- O(N)
+    Space Complexity :- O(1)
+    
+    Where N is the maximum length of linked list.
+*/
+
+public class Solution {
+
+	private static int length(LinkedListNode<Integer> head) {
+	    int length = 0;
+	    while (head != null) {
+	        head = head.next;
+	        length++;
+	    }
+	    return length;
+	}
+
+	public static int findIntersection(LinkedListNode<Integer> firstHead, LinkedListNode<Integer> secondHead) {
+		
+		 // get the length of both list
+		int firstListLength = length(firstHead), secondListLength = length(secondHead);
+		 
+	    // move headA and headB to the same start point
+	    while (firstListLength > secondListLength) {
+	    	firstHead = firstHead.next;
+	        firstListLength--;
+	    }
+	    
+	    while (firstListLength < secondListLength) {
+	    	secondHead = secondHead.next;
+	    	secondListLength--;
+	    }
+	    
+	    // find the intersection until end
+	    while (firstHead != secondHead) {
+	    	firstHead = firstHead.next;
+	    	secondHead = secondHead.next;
+	    }
+	    
+	    if(firstHead == null)
+	    	return -1;
+	    
+	    return firstHead.data;
+	}
+}
