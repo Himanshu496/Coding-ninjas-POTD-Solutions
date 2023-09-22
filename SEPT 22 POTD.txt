@@ -1,0 +1,54 @@
+POTD : 22 SEPTEMBER 2023
+
+MEDIUM : https://www.codingninjas.com/studio/problems/flatten-bst-to-a-sorted-list_1169459
+
+SOLUTION : https://www.codingninjas.com/studio/library/flattening-bst-in-sorted-list
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+/************************************************************
+
+ Following is the TreeNode class structure
+     class TreeNode<T>
+     {
+         public:
+             T data;
+             TreeNode<T> left;
+             TreeNode<T> right;
+
+            TreeNode(T data)
+            {
+                this.data = data;
+                left = null;
+                right = null;
+         }
+     };
+ ************************************************************/
+public class Solution
+{
+    static TreeNode<Integer>res = null;
+    static TreeNode<Integer>ans = res;
+    public static void solve(TreeNode<Integer>root){
+        if(root == null)return;
+        solve(root.left);
+        TreeNode<Integer>temp = new TreeNode<Integer>(root.data);
+        if (res == null) {
+            res = temp;
+            ans = res;
+        } else {
+            res.right = temp;
+            res = res.right;
+        }
+        solve(root.right);
+    }
+    public static TreeNode<Integer> flatten(TreeNode<Integer> root)
+    {
+        // Write your code here
+        res = null;
+        ans = null;
+        solve(root);
+        return ans;
+    }
+}
