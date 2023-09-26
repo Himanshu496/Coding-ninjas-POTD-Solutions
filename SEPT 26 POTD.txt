@@ -1,0 +1,47 @@
+POTD : 26 SEPTEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/megaprime-numbers_893339
+
+SOLUTION : 
+
+JAVA : 
+
+
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+    public static boolean[] sieve(int n){
+        boolean arr[] = new boolean[n+1];
+        Arrays.fill(arr,true);
+        arr[0] = false;
+        arr[1] = false;
+        for(int i = 2; i*i<=n; i++){
+            if(arr[i]){
+                for(int j = i*i; j<=n; j+=i){
+                    arr[j] = false;
+                }
+            }
+        }
+        return arr;
+    }
+    public static boolean check(int n,boolean arr[]){
+        while(n!=0){
+            if(!arr[n%10])return false;
+            n/=10;
+        }
+        return true;
+    }
+    public static int countMegaPrimeNumber(int left, int right) 
+    {
+        // Write your code here.
+        boolean arr[] = sieve(right);
+        int count = 0;
+        for(int i=left; i<=right; i++){
+            if(arr[i]){
+                if(check(i,arr))count++;
+            }
+        }
+        return count;
+    }
+}
