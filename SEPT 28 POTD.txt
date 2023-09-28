@@ -1,0 +1,24 @@
+POTD : 28 SEPTEMBER 2023
+
+MEDIUM : https://www.codingninjas.com/studio/problems/ninja-and-the-string_3167805
+
+SOLUTION : https://www.codingninjas.com/studio/campus/public/discussions/interview-problems/7273
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int minimumCost(int n, String s, int[] cost) {
+		// Write your code here.
+		int res = 0;
+		for(int i = 0; i<n-1; i++){
+			if(s.charAt(i)==s.charAt(i+1)){
+				int temp = Math.min(cost[i],cost[i+1]);
+				res+=temp;
+				cost[i+1] = Math.max(cost[i],cost[i+1]);
+			}
+		}
+		return res;
+	}
+}
