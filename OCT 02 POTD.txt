@@ -1,0 +1,57 @@
+POTD : 02 OCTOBER 2023
+
+MEDIUM : https://www.codingninjas.com/studio/problems/rearrange-odd-and-even-places_920379 
+
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/rearrange-odd-and-even-places_920379
+
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+		{
+		    public int data;
+		    public Node next, arbit;
+
+		    Node(int data)
+		    {
+		        this.data = data;
+		        this.next = null;
+		        this.arbit = null;
+		    }
+		}
+
+*****************************************************************/
+
+public class Solution {
+
+	public static Node oddEvenList(Node head) {
+
+		// Write your code here
+		if(head == null || head.next == null)return head;
+		Node res = head;
+		Node even = new Node(-1);
+		Node finalnode = even;
+		Node prev = new Node(-1);
+		while (head != null && head.next != null) {
+			even.next = head.next;
+			head.next = head.next.next;
+			prev = head;
+			head = head.next;
+			even = even.next;
+		}
+		even.next = null;
+		if(head!=null){
+			prev = head;
+			head = head.next;
+		}
+		prev.next = finalnode.next;
+		return res;
+	}
+}
