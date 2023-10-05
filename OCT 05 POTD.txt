@@ -1,0 +1,52 @@
+POTD : 05 OCTOBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/string-mania_5558497
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/string-mania_5558497
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int stringMania(int n, int m, String str1, String str2) {
+		// Write your code here.
+		int count = 0;
+		int i = 0;
+		int j = 0;
+		if(str1.equals(str2))return 0;
+		while(i<n && j<m){
+			if(str1.charAt(i)>str2.charAt(j)) return 1;
+			else if(str1.charAt(i)<str2.charAt(j))return -1;
+			i++;
+			j++;
+		}
+		if(i==n && j!=m)return -1;
+		else return 1;
+	}
+}
+
+MEDIUM : https://www.codingninjas.com/studio/problems/count-of-3s_1229406
+
+SOLUTION : 
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+  public static long countOf3(int x) {
+    // Write your code here.
+    long count = 0;
+    String temp = "3";
+    for(int i = 3; i<=x; i++){
+      String str = Integer.toString(i);
+      int index = str.indexOf(temp);
+      while(index!=-1){
+        count++;
+        index = str.indexOf(temp,index+1);
+      }
+    }
+    return count;
+  }
+}
