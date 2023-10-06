@@ -1,0 +1,40 @@
+POTD : 06 OCTOBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/make-groups_975275
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/make-groups_975275
+
+JAVA : 
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int findTwoGroups(int n) {
+		// Write your code here.
+		long res = ((n*(n+1))/2);
+		return (int)(res%2);
+	}
+}
+
+
+
+HARD : https://www.codingninjas.com/studio/problems/maximum-subarray-sum_630526
+
+SOLUTION : 
+
+JAVA : 
+NOTE : NOT SURE*
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static long maxSubarraySum(int[] arr, int n) {
+		// write your code here
+		long sum = 0;
+		long res = Long.MIN_VALUE;
+		for(int i = 0; i<n ; i++){
+			sum+=arr[i];
+			if(sum<0)sum = 0;
+			res = Math.max(res,sum);
+		}
+		return res;
+	}
+}
