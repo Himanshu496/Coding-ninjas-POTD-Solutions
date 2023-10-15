@@ -1,0 +1,62 @@
+POTD : OCT 15 2023
+
+EASY : 
+
+MEDIUM : https://www.codingninjas.com/studio/problems/intersect-odd-even_920458
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/intersect-odd-even_920458
+
+JAVA : 
+
+
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+		{
+		    public int data;
+		    public Node next;
+
+		    Node(int data)
+		    {
+		        this.data = data;
+		        this.next = null;
+		    }
+		}
+
+*****************************************************************/
+
+public class Solution {
+
+	public static Node commonOddEven(Node head1, Node head2) {
+
+		// Write your code here
+		Node odd = new Node(-1);
+		Node res = odd;
+		Node even = new Node(-1);
+		Node rese = even;
+		while(head1!=null && head2!=null){
+			if(head1.data>head2.data){
+				head2 = head2.next;
+			}else if(head1.data<head2.data){
+				head1 = head1.next;
+			}else{
+				if(head1.data%2==0){
+					even.next = new Node(head1.data);
+					even = even.next;
+				}else{
+					odd.next = new Node(head1.data);
+					odd = odd.next;
+				}
+				head1 = head1.next;
+				head2 = head2.next;
+			}
+		}
+		odd.next = rese.next;
+		return res.next;
+
+	}
+}
