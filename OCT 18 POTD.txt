@@ -1,0 +1,66 @@
+POTD : 18 OCTOBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/flip-bits_1063248
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/flip-given-bits_973114
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	
+	public static int flipSomeBits(int num, int[] arr, int n) {
+		// Write your code here.
+		ArrayList<Integer>al = new ArrayList<>();
+		while(num!=0){
+			al.add(num%2);
+			num/=2;
+		}
+		for(int i = al.size(); i<33; i++)al.add(0);
+		for(int val : arr){
+			int temp = al.get(val-1);
+			if(temp==0)al.set(val-1,1);
+			else al.set(val-1,0);
+		}
+		int res = 0;
+		int i = 0;
+		for(int val : al){
+			if(val==1) res = res+(int)Math.pow(2,i);
+			i++;
+		}
+		return res;
+	}
+	
+}	
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/sliding-window-maximum_980226
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/sliding-window-maximum_980226
+
+JAVA : 
+
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+public class Solution 
+{
+	public static ArrayList<Integer> getMaximumOfSubarrays(ArrayList<Integer> nums, int k) 
+	{
+		//	  Write your code here.
+		ArrayList<Integer>al = new ArrayList<>();
+		PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+		for(int i = 0; i<k; i++){
+			pq.add(nums.get(i));
+		}
+		al.add(pq.peek());
+		for(int i = k; i<nums.size(); i++){
+			pq.remove(nums.get(i-k));
+			pq.add(nums.get(i));
+			al.add(pq.peek());
+		}
+		return al;
+	}
+}
