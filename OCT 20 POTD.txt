@@ -1,0 +1,32 @@
+POTD : 20 OCTOBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/magician-and-chocolates_920437
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/magician-and-chocolates_920437
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+
+public class Solution {
+    public static int maximumChocolates(ArrayList<Integer> arr,int k){
+        // Write your code here.
+        PriorityQueue<Integer>priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
+        for(int i = 0; i<arr.size(); i++){
+            priorityQueue.add(arr.get(i));
+        }
+        int res = 0;
+        while(k-->0){
+            int temp = priorityQueue.poll();
+            res+=temp;
+            priorityQueue.add(temp/2);
+        }
+        return res;
+    }
+}
+
+HARD :  https://www.codingninjas.com/studio/problems/euler-path_1214547 
+
+SOLUTION :  https://www.codingninjas.com/studio/problem-details/euler-path_1214547
