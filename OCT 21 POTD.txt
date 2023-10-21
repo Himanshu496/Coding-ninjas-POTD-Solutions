@@ -1,0 +1,20 @@
+POTD : 21 OCTOBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/distinct-enemies_1474981
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/distinct-enemies_1474981
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution 
+{
+	public static int distinctEnemies(ArrayList<Integer> arr, int n) 
+    {
+		// Write your code here.
+		Set<Integer>st = new HashSet<>();
+		for(int i = 0; i<n; i++)st.add(arr.get(i));
+		return st.size();
+	}
+}
