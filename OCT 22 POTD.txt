@@ -1,0 +1,46 @@
+POTD : 22 OCTOBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/find-minimum-number-of-coins_975277
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/find-minimum-number-of-coins_975277
+
+JAVA : 
+
+import java.util.List;
+public class Solution {
+    public static List<Integer> MinimumCoins(int n) {
+        // Write your code here.
+        List<Integer>al = new ArrayList<>();
+        while(n>0){
+            if(n>=1000){
+                al.add(1000);
+                n-=1000;
+            }else if(n>=500){
+                al.add(500);
+                n-=500;
+            }else if(n>=100){
+                al.add(100);
+                n-=100;
+            }else if(n>=50){
+                al.add(50);
+                n-=50;
+            }else if(n>=20){
+                al.add(20);
+                n-=20;
+            }else if(n>=10){
+                al.add(10);
+                n-=10;
+            }else if(n>=5){
+                al.add(5);
+                n-=5;
+            }else if(n>=2){
+                al.add(2);
+                n-=2;
+            }else if(n>=1){
+                al.add(1);
+                n-=1;
+            }
+        }
+        return al;
+    }
+}
