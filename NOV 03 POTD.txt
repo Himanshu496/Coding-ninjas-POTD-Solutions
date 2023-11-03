@@ -1,0 +1,90 @@
+POTD : 02 NOV 2023
+
+EASY : https://www.codingninjas.com/studio/problems/linear-probing_982799
+
+SOLUTION : 
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+import java.util.List;
+
+public class Solution {
+
+    public static int[] linearProbing(List<Integer> keys) {
+        // Write your code here.
+        int n = keys.size();
+        int arr[] = new int[n];
+        Arrays.fill(arr,-1);
+        for(int i = 0; i<n; i++){
+            int j = keys.get(i)%n;
+            while(arr[j]!=-1){
+                j++;
+                if(j>=n)j%=n;
+            }
+            arr[j] = keys.get(i);
+        }
+        return arr;
+    }
+
+}
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/top-view-of-binary-tree_799401
+
+SOLUTION : https://takeuforward.org/data-structure/top-view-of-a-binary-tree/
+
+JAVA : 
+ /*********************************************
+
+ Following is the TreeNode class structure
+
+ class TreeNode {
+     int data;
+     TreeNode left;
+     TreeNode right;
+
+     TreeNode(int data) {
+         this.data = data;
+         this.left = null;
+         this.right = null;
+     }
+ }
+
+ *********************************************/
+
+import java.util.*;
+
+public class Solution {
+    static class Pair{
+        TreeNode node;
+        int val;
+        Pair(TreeNode node, int val){
+            this.node = node;
+            this.val = val;
+        }
+    }
+    public static List<Integer> getTopView(TreeNode root) {
+        // Write your code here.
+        List<Integer>res = new ArrayList<>();
+        if(root == null)return res;
+        Queue<Pair>q = new LinkedList<>();
+        Map<Integer,Integer>mp = new TreeMap<>();
+        q.add(new Pair(root,0));
+        while(!q.isEmpty()){
+            Pair p = q.poll();
+            int col = p.val;
+            TreeNode node = p.node;
+            if(!mp.containsKey(col)){
+                mp.put(col,node.data);
+            }
+            if(node.left!=null)q.add(new Pair(node.left, col-1));
+            if(node.right!=null)q.add(new Pair(node.right, col+1));
+        }
+        for(int val : mp.keySet()){
+            res.add(mp.get(val));
+        }
+        return res;
+    }
+}
