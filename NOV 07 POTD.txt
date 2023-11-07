@@ -1,0 +1,29 @@
+POTD : 07 NOV 2023
+
+EASY : https://www.codingninjas.com/studio/problems/delete-node-in-a-linked-list_1105578
+
+SOLUTION : 
+
+JAVA : 
+
+public class Solution {
+	public static void deleteNode(LinkedListNode<Integer> node) {
+		// Write your code here.
+        if(node.next == null)node = node.next;
+        while(node!=null){
+            node.data = node.next.data;
+            if(node.next.next == null){
+                node.next = null;
+                break;
+            }
+            node = node.next;
+        }
+        // node = null;
+	}
+}
+
+HARD : https://www.codingninjas.com/studio/problems/regular-expression_1102320
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/regular-expression-match_1095630
+
+JAVA : 
