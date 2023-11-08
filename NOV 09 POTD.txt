@@ -1,0 +1,134 @@
+POTD : 09 NOV 2023
+
+EASY : 
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/find-msb-in-o-1_1112570
+
+JAVA : 
+
+
+MEDIUM : https://www.codingninjas.com/studio/problems/inorder-sucessor_799913
+
+SOLUTION : https://www.codingninjas.com/studio/library/inorder-successor-in-binary-tree
+
+JAVA : 
+
+
+import java.util.*;
+public class Solution {
+	public static ArrayList<BinaryTreeNode<Integer>> al = new ArrayList<>();
+	public static void solve(BinaryTreeNode<Integer>root, BinaryTreeNode<Integer>node){
+		if(root==null)return;
+		solve(root.left,node);
+		al.add(root);
+		solve(root.right,node);
+	}
+	public static BinaryTreeNode<Integer> inorderSuccesor(BinaryTreeNode<Integer> root, BinaryTreeNode<Integer> node) {
+    	// Write you code here.
+		if(root == null)return null;
+		solve(root,node);
+		int n = al.size();
+		for(int i = 0; i<n; i++){
+			if(al.get(i) == node){
+				if(i!=n-1) return al.get(i+1);
+			}
+		}
+		return null;
+	}
+}
+
+HARD : https://www.codingninjas.com/studio/problems/manacher-s-algorithm_3155502
+
+SOLUTION : https://www.codingninjas.com/studio/library/manacher-s-algorithm
+https://www.codingninjas.com/studio/library/manacher-s-algorithm-3640
+JAVA : 
+
+//getting tle 
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static boolean solve(String str){
+		int n = str.length();
+		for(int i = 0; i<n/2; i++){
+			if(str.charAt(i)!=str.charAt((n-i)-1))return false;
+		}
+		return true;
+	}
+	public static String manacherAlgo(String str) {
+		// Write your code here.
+		int n = str.length();
+		String res = "";
+		int max = 0;
+		for(int i = 0; i<n; i++){
+			for(int j = i+max; j<=n; j++){
+				String temp = str.substring(i,j);
+				if(solve(temp)){
+					if((j-i)>max){
+						max = j-i;
+						res = temp;
+					}
+				}
+			}
+		}
+		return res;
+	}
+
+}
+
+
+completly accepted but help of chatgpt
+
+import java.util.*;
+
+public class Solution {
+
+    public static String manacherAlgo(String str) {
+        int n = str.length();
+        if (n == 0) {
+            return "";
+        }
+
+        char[] modifiedString = new char[2 * n + 1];
+        for (int i = 0; i < n; i++) {
+            modifiedString[2 * i] = '#';
+            modifiedString[2 * i + 1] = str.charAt(i);
+        }
+        modifiedString[2 * n] = '#';
+
+        int[] palindromeLengths = new int[2 * n + 1];
+        int center = 0, right = 0;
+
+        for (int i = 0; i < 2 * n + 1; i++) {
+            int mirror = 2 * center - i;
+            if (i < right) {
+                palindromeLengths[i] = Math.min(right - i, palindromeLengths[mirror]);
+            }
+
+            int a = i + (1 + palindromeLengths[i]);
+            int b = i - (1 + palindromeLengths[i]);
+            while (a < 2 * n + 1 && b >= 0 && modifiedString[a] == modifiedString[b]) {
+                palindromeLengths[i]++;
+                a++;
+                b--;
+            }
+
+            if (i + palindromeLengths[i] > right) {
+                center = i;
+                right = i + palindromeLengths[i];
+            }
+        }
+
+        int maxLen = 0;
+        int centerIndex = 0;
+        for (int i = 0; i < 2 * n + 1; i++) {
+            if (palindromeLengths[i] > maxLen) {
+                maxLen = palindromeLengths[i];
+                centerIndex = i;
+            }
+        }
+
+        int start = (centerIndex - maxLen) / 2;
+        int end = start + maxLen;
+        return str.substring(start, end);
+    }
+}
