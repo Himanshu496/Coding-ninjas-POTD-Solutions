@@ -1,0 +1,18 @@
+POTD : 17 NOV 2023
+
+EASY : https://www.codingninjas.com/studio/problems/print-the-kth-digit_1214937
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/print-the-kth-digit_1214937
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int findKthFromRight(int n, int m, int k) {
+        // Write your code here.
+        Long val = (long)Math.pow(n,m);
+        String res = ""+val;
+        return Character.getNumericValue(res.charAt(res.length()-k));
+    }
+}
