@@ -1,0 +1,41 @@
+POTD : 17 DECEMBER 2023
+
+
+EASY : https://www.codingninjas.com/studio/problems/count-customers-who-did-not-get-a-computer_1115775
+
+SOLUTION : 
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*;
+
+public class Solution 
+{
+	public static int countCustomers(ArrayList<Integer> arr, int k) 
+    {
+		//    Write your code here
+		Set<Integer>st = new HashSet<>();
+		Set<Integer>waiting = new HashSet<>();
+		int n = arr.size();
+		int count = 0;
+		int res = 0;
+		for(int i = 0; i<n; i++){
+			if(st.contains(arr.get(i))){
+				st.remove(arr.get(i));
+				count--;
+			}else if(waiting.contains(arr.get(i))){
+				waiting.remove(arr.get(i));
+				res++;
+			}else{
+				if(count<k){
+					st.add(arr.get(i));
+					count++;
+				}else{
+					waiting.add(arr.get(i));
+				}
+			}
+		}
+		return res;
+	}
+}
