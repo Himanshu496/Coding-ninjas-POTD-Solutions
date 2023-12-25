@@ -1,0 +1,29 @@
+POTD : 25 DECEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/meta-strings_1089556
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/meta-strings_1089556
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution{
+    public static boolean checkMeta(String str1, String str2) {
+        // Write your code here.
+        int n = str1.length();
+        if(n!=str2.length())return false;
+        if(str1.equals(str2))return false;
+        Map<Character,Integer>mp = new HashMap<>();
+        for(int i = 0; i<n; i++){
+            mp.put(str1.charAt(i),mp.getOrDefault(str1.charAt(i), 0)+1);
+        }
+        for(int i = 0; i<n; i++){
+            if(!mp.containsKey(str2.charAt(i)))return false;
+            int val = mp.get(str2.charAt(i))-1;
+            if(val==0)mp.remove(str2.charAt(i));
+            else mp.put(str2.charAt(i),val);
+        }
+        return mp.size()==0;
+    }
+}
