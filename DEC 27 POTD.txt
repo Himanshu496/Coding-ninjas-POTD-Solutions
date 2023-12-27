@@ -1,0 +1,75 @@
+POTD : 27 DECEMBER 2023
+
+EASY : https://www.codingninjas.com/studio/problems/deletion-in-doubly-linked-list_4609672
+
+SOLTUION : https://www.codingninjas.com/studio/library/delete-a-node-in-a-doubly-linked-list
+https://www.codingninjas.com/studio/library/doubly-linked-list-operations-in-data-structure
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+
+/************************************************************
+
+ Following is the linkedList class structure:
+
+ class Node<T> {
+ T data;
+ Node<T> next;
+ Node<T> prev;
+
+ public Node(T data) {
+ this.data = data;
+ }
+ }
+
+ ************************************************************/
+
+public class Solution {
+
+    static Node deleteNode(Node head, int pos) {
+        // Write your code here.
+        int i = 0;
+        if(pos == 0) {
+            head.next.prev = null;
+            head = head.next;
+            return head;
+        }
+        Node trav = head;
+        while(trav!=null && i<pos){
+            trav = trav.next;
+            i++;
+        }
+        if(trav.next!=null){
+            trav.prev.next = trav.next;
+            trav.next.prev = trav.prev;
+        }else{
+            trav.prev.next = null;
+        }
+        return head;
+    }
+}
+
+MEDIUM : https://www.codingninjas.com/studio/problems/dominant-number_1082153
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/dominant-number_1082153
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static int dominantNumber(int[] arr, int n) {
+		 // Write your code here.
+		 Map<Integer,Integer>mp = new HashMap<>();
+		 for(int val : arr){
+			 int occ = mp.getOrDefault(val, 0)+1;
+			 if(n/3<occ)return val;
+			 mp.put(val,occ);
+		 }
+		 return -1;
+	}
+}
+
+
+
