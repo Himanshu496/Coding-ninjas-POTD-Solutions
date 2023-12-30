@@ -1,0 +1,72 @@
+EASY : 
+
+SOLUTION :
+
+JAVA :
+
+
+MEDIUM : 
+
+SOLUTION : 
+
+JAVA : 
+
+
+import java.util.* ;
+import java.io.*; 
+/************************************************************
+
+    Following is the linked list node structure:
+    
+    class ListNode<T> {
+ 
+		public T data;
+		public ListNode<T> next;
+
+		public ListNode(T data) {
+			this.data = data;
+		}
+	}
+
+************************************************************/
+
+public class Solution {
+	public static ArrayList solve(ListNode<Integer>node){
+		ArrayList<Integer>al = new ArrayList<>();
+		while(node!=null){
+			al.add(node.data);
+			node = node.next;
+		}
+		return al;
+	}
+	public static ListNode<Integer> addTwoLists(ListNode<Integer> first, ListNode<Integer> second) {
+		// Write your code here.
+		ArrayList<Integer>al1 = solve(first);
+		ArrayList<Integer>al2 = solve(second);
+		int n = al1.size();
+		int m = al2.size();
+		int i = 0; 
+		int j = 0;
+		Collections.reverse(al1);
+		Collections.reverse(al2);
+		ArrayList<Integer>res = new ArrayList<>();
+		int carry = 0;
+		while(i<n || j<m || carry != 0){
+			int sum = (i<n?al1.get(i++):0) + (j<m?al2.get(j++):0) + carry;
+			// System.out.println(sum);
+			carry = sum/10;
+			res.add(0,sum%10);
+		}
+		if (res.isEmpty()) {
+            return new ListNode<>(0);
+        }
+        ListNode<Integer> ans = new ListNode<>(res.get(0));
+        ListNode<Integer> temp = ans;
+        for (int k = 1; k < res.size(); k++) {
+            ListNode<Integer> node = new ListNode<>(res.get(k));
+            temp.next = node;
+            temp = temp.next;
+        }
+        return ans;
+	}
+}

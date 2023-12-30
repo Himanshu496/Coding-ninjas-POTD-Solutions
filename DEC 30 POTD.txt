@@ -1,0 +1,25 @@
+POTD : 30 DECEMBER 2023
+
+MEDIUM : https://www.codingninjas.com/studio/problems/ninja-and-the-game-of-words_1214642
+
+SOLUTION : https://www.codingninjas.com/studio/problem-details/ninja-and-the-game-of-words_1214642
+
+JAVA : 
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static ArrayList<Integer> getFrequency(String str, ArrayList<String> words, int n) {
+		// Write your code here.
+		ArrayList<Integer>al = new ArrayList<>();
+		Map<String,Integer>mp = new HashMap<>();
+		String[] arr = str.split(" ");
+		for(String st : arr){
+			mp.put(st,mp.getOrDefault(st, 0)+1);
+		}
+		for(String st : words){
+			al.add(mp.getOrDefault(st, 0));
+		}
+		return al;
+	}
+}
