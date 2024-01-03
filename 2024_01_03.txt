@@ -1,0 +1,42 @@
+POTD : 3 JANUARY 2024
+
+EASY : https://www.codingninjas.com/studio/problems/stack-implementation-using-array_3210209
+
+SOLUTION : https://www.codingninjas.com/studio/campus/public/discussions/interview-problems/13169
+
+JAVA : 
+
+public class Solution{
+    static class Stack {
+        static int idx = -1;
+        static int[] st;
+        Stack(int capacity) {
+            // Write your code here.
+            st = new int[capacity];            
+        }
+        public void push(int num) {
+            // Write your code here.
+            if(idx == st.length-1)return;
+            st[++idx] = num;
+        }
+        public int pop() {
+            // Write your code here.
+            if(idx==-1)return -1;
+            return st[idx--];
+        }
+        public int top() {
+            // Write your code here.
+            if(idx==-1)return -1;
+            return st[idx];
+        }
+        public int isEmpty() {
+            // Write your code here.
+            return idx == -1?1:0;
+        }
+        public int isFull() {
+            // Write your code here.
+            if(idx == (st.length-1))return 1;
+            return 0;
+        }
+    }
+}
